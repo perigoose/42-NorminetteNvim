@@ -251,7 +251,7 @@ local function setup_clear_diagnostics_autocmd(bufnr)
 		callback = function()
 			clear_diagnostics(M.namespace, bufnr)
 		end,
-		group = vim.api.nvim_create_augroup("NorminetteClearDiagnostics", { clear = true }),
+		group = vim.api.nvim_create_augroup("NorminetteClearDiagnostics", {}),
 	})
 end
 
@@ -266,7 +266,7 @@ local function setup_autocmds_and_run()
 				clear_autocmds_and_messages()
 			end
 		end,
-		group = vim.api.nvim_create_augroup("NorminetteAutoCheck", { clear = true }),
+		group = vim.api.nvim_create_augroup("NorminetteAutoCheck", {}),
 	})
 	setup_clear_diagnostics_autocmd(vim.api.nvim_get_current_buf())
 	if M.toggle_state then
@@ -284,7 +284,7 @@ local function setup_size_autocmd(bufnr)
 		callback = function()
 			update_function_sizes(bufnr)
 		end,
-		group = vim.api.nvim_create_augroup("NorminetteFunctionSize", { clear = true }),
+		group = vim.api.nvim_create_augroup("NorminetteFunctionSize", {}),
 	})
 end
 
@@ -392,7 +392,7 @@ function M.setup(opts)
 				clear_diagnostics(M.namespace, vim.api.nvim_get_current_buf())
 			end
 		end,
-		group = vim.api.nvim_create_augroup("NorminetteInitialUpdate", { clear = true }),
+		group = vim.api.nvim_create_augroup("NorminetteInitialUpdate", {}),
 	})
 	vim.api.nvim_create_autocmd({ "TextChanged", "BufWinEnter", "BufEnter", "BufWritePost" }, {
 		pattern = { "*.c", "*.h" },
@@ -403,7 +403,7 @@ function M.setup(opts)
 				clear_function_sizes(vim.api.nvim_get_current_buf())
 			end
 		end,
-		group = vim.api.nvim_create_augroup("NorminetteInitialUpdate", { clear = true }),
+		group = vim.api.nvim_create_augroup("NorminetteInitialUpdate", {}),
 	})
 end
 
